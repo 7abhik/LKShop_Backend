@@ -1,0 +1,8 @@
+{
+	"jwtPrivateKey": "my_app_key",
+	"mongodb": {
+		"uri": "mongodb://localhost:27017/",
+		"db": "mydb"
+	},
+	"port": 4000
+}

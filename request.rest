@@ -1,0 +1,68 @@
+POST http://localhost:4000/api/user HTTP/1.1
+Content-Type: application/json
+
+{
+	"email":"7abhishek@gmail.com",
+	"password":"1234567",
+	"name":"Abhishek Kumar"
+}
+
+###
+
+POST http://localhost:4000/api/auth HTTP/1.1
+Content-Type: application/json
+
+{
+	"email":"7abhik@gmail.com",
+	"password":"1234567"
+}
+
+
+###
+
+GET http://localhost:4000/api/user/me HTTP/1.1
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY5ODRkMTU2NGU3MDM2OTQyMjQ5MDQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTg3NTQ5OTV9.k85BH4ZZslecLHZF_g8mcg4vzHv-1jkqYYgCQQzGBiM
+###
+
+POST http://localhost:4000/api/product HTTP/1.1
+content-type: application/json
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY5ODRkMTU2NGU3MDM2OTQyMjQ5MDQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTg3NTQ5OTV9.k85BH4ZZslecLHZF_g8mcg4vzHv-1jkqYYgCQQzGBiM
+
+{
+    "name": "sample t-shirt 3",
+    "image":"https://www.google.com/url?sa=i&url=https%3A%2F%2Fampleglobal.in%2Fproduct_details.php%3Fproduct%3DT_Shirt&psig=AOvVaw1WDgbvlD_MvjOWLdQUS81m&ust=1621963609503000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCPCO38Xr4vACFQAAAAAdAAAAABAP",
+		"gender":"M",
+		"variations":{"sku":"das8df","price":101,"inStock":50}
+}
+
+###
+
+PUT http://localhost:4000/api/product/60abe23db01e9b49142df2c5 HTTP/1.1
+content-type: application/json
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY5ODRkMTU2NGU3MDM2OTQyMjQ5MDQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTg3NTQ5OTV9.k85BH4ZZslecLHZF_g8mcg4vzHv-1jkqYYgCQQzGBiM
+
+{
+    "name": "abcd sample t-shirt updated 2",
+    "image":"https://assetscdn1.paytm.com/images/catalog/product/K/KI/KIDPEPE-JEANS-BKAPS35577658961D5/1603378965395_0..jpg?imwidth=320&impolicy=hq",
+		"gender":"f",
+		"variations":{"sku":"njdt543","price":201,"inStock":71,"_id":"607c007399894c270c82a7b0"}
+}
+
+###
+
+DELETE http://localhost:4000/api/product/607c3e4c302b04456cf1ec9a HTTP/1.1
+x-auth-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDY5ODRkMTU2NGU3MDM2OTQyMjQ5MDQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE2MTg3NTQ5OTV9.k85BH4ZZslecLHZF_g8mcg4vzHv-1jkqYYgCQQzGBiM
+
+###
+
+GET http://localhost:4000/api/product/60a0caa987f6e53eec9c05d0 HTTP/1.1
+
+
+###
+POST http://localhost:4000/api/product/list HTTP/1.1
+Content-Type: application/json
+
+{
+	"start":0,
+	"length":3
+}
