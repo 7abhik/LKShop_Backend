@@ -1,7 +1,7 @@
 const Joi = require('joi');
 const bcrypt = require('bcrypt');
 const _ = require('lodash');
-const { User } = require('../models/users.model');
+const { User: User_Model } = require('../models/users.model');
 const express = require('express');
 const { ErrorHandler } = require('../middlewares/error');
 const router = express.Router();
@@ -9,7 +9,7 @@ const router = express.Router();
 router.post('/', async (req, res) => {
 	const { error } = validate(req.body);
 	if (error) throw new ErrorHandler(400, error.details[0].message);
-	let user = await User.findOne({ email: req.body.email });
+	let user = await User_Model.findOne({ email: req.body.email });
 	if (!user) throw new ErrorHandler(400, 'User not found.');
 
 	const validPassword = await bcrypt.compare(req.body.password, user.password);
