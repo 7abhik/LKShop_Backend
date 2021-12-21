@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const { ErrorHandler } = require("../middlewares/error");
 const _ = require("lodash");
-const { validate } = require("../models/users.model");
+const { validate, validateMember } = require("../models/users.model");
 const auth = require("../middlewares/auth");
-const { me, createUser } = require("../controllers/user.controller");
+const { me, createUser, createMember } = require("../controllers/user.controller");
 
 router.get("/me", auth, async (req, res) => {
   const user = await me(req);
@@ -16,6 +16,16 @@ router.post("/", async (req, res) => {
   if (error) throw new ErrorHandler(400, error.details[0].message);
 
   const user = await createUser(req);
+
+  const token = user.generateAuthToken();
+  res.header("x-auth-token", token).send({ token, status: "success" });
+});
+
+router.post("/member", async (req, res) => {
+  const { error } = validateMember(req.body);
+  if (error) throw new ErrorHandler(400, error.details[0].message);
+
+  const user = await createMember(req);
 
   const token = user.generateAuthToken();
   res.header("x-auth-token", token).send({ token, status: "success" });
